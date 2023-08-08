@@ -2,7 +2,7 @@ const book = document.querySelector(".book");
 const form = document.querySelector("#form");
 const titl = document.querySelector("#title");
 const author = document.querySelector("#author");
-const removeButtons = document.querySelectorAll('.remove');
+const removeButton = document.querySelectorAll('.remove');
 const data = JSON.parse(localStorage.getItem('booksData')) || [];
 const booksArr = [];
 
@@ -14,10 +14,17 @@ function addBooksList(id, title, authr) {
         `<div class='book-data'>
         <h2 class='titl'>${title}</h2>
     <h4 class='author'>${authr}</h4>
-    <button class='remove btn' id='${id}'>Remove</button>
+    <button class='remove btn' id='${id}' type='button'>Remove</button>
     <hr>
     </div>`;
     book.innerHTML += booksList;
+    removeButton.forEach((button) => {
+        button.addEventListener('click', (e) => {
+          debugger;
+            const i = e.target.id;
+            deleteData(i);
+        });
+    });
 }
 
 /*----------------Save data to local storage----------------*/
@@ -45,9 +52,9 @@ window.addEventListener('load', () => {
     getBooksData();
 });
 
-removeButtons.forEach((button) => {
+removeButton.forEach((button) => {
     button.addEventListener('click', (e) => {
-        debugger;
+      debugger;
         const i = e.target.id;
         deleteData(i);
     });
