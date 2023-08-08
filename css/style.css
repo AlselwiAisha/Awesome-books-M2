@@ -38,10 +38,12 @@ h1 {
   align-items: start;
   margin-bottom: 10px;
 }
-.awesome-book:nth-child(odd){
+
+.awesome-book:nth-child(odd) {
   background-color: #aaa7a7;
 }
-.div{
+
+.div {
   display: flex;
 }
 
