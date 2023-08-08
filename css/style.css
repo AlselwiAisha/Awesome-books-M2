@@ -33,19 +33,14 @@ h1 {
 .awesome-book {
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: start;
   margin-bottom: 10px;
 }
-.awesome-book:nth-child(odd){
-  background-color: #aaa7a7;
-}
-.div{
-  display: flex;
-}
 
-.awesome-book h2 {
+.awesome-book hr,
+.awesome-book h2,
+.awesome-book h4 {
   width: 100%;
   margin: 6px;
   margin-left: 10px;
@@ -53,7 +48,7 @@ h1 {
 
 .books-list,
 .add-new {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,7 +56,7 @@ h1 {
 }
 
 form {
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: start;
