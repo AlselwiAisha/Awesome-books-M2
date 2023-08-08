@@ -69,7 +69,6 @@ window.addEventListener('click', (e) => {
     const author = formData.get('author');
     book.store(title, author);
     form.reset();
-    console.log('test');
   }
   book.display(bookContainer);
 });
