@@ -1,66 +1,65 @@
-const book = document.querySelector(".book");
-const form = document.querySelector("#form");
-const titl = document.querySelector("#title");
-const author = document.querySelector("#author");
-const removeButton = document.querySelectorAll('.remove');
-const data = JSON.parse(localStorage.getItem('booksData')) || [];
-const booksArr = [];
-
-book.innerHTML = "";
-
-/*---------------Add Books List----------------*/
-function addBooksList(id, title, authr) {
-    const booksList =
-        `<div class='book-data'>
-        <h2 class='titl'>${title}</h2>
-    <h4 class='author'>${authr}</h4>
-    <button class='remove btn' id='${id}' type='button'>Remove</button>
-    <hr>
-    </div>`;
-    book.innerHTML += booksList;
-    removeButton.forEach((button) => {
-        button.addEventListener('click', (e) => {
-          debugger;
-            const i = e.target.id;
-            deleteData(i);
-        });
-    });
-}
-
-/*----------------Save data to local storage----------------*/
-form.addEventListener('submit', () => {
-    const bookData = {
-        title_: titl.value,
-        author_: author.value,
-    };
-    data.push(bookData);
-    localStorage.setItem('booksData', JSON.stringify(data));
-});
-
-/*------------Get data from local storage and show it in HTML file------------*/
-function getBooksData() {
-    if (data) {
-        let i = 0;
-        data.forEach((d) => {
-            i += 1;
-            addBooksList(i, d.title_, d.author_);
-        });
+class AwesomeBooks {
+    constructor(memAdrr) {
+      this.memAdrr = memAdrr;
     }
-};
-
-window.addEventListener('load', () => {
-    getBooksData();
-});
-
-removeButton.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      debugger;
-        const i = e.target.id;
-        deleteData(i);
-    });
-});
-
-function deleteData(index) {
-    data.splice(index, 1);
-    localStorage.setItem('booksData', JSON.stringify(data));
+  
+    store(BookTitle, booKAuthor) {
+      if (BookTitle < 1 || booKAuthor < 1) return;
+      const storeData = JSON.parse(localStorage.getItem(this.memAdrr)) || [];
+      const book = { title: BookTitle, author: booKAuthor };
+      storeData.push(book);
+      localStorage.setItem(this.memAdrr, JSON.stringify(storeData));
+    }
+  
+    display(container) {
+      const storeData = JSON.parse(localStorage.getItem(this.memAdrr)) || [];
+      const fragment = document.createDocumentFragment();
+  
+      while (container.firstChild) {
+        container.firstChild.remove();
+      }
+  
+      storeData.forEach((obj) => {
+        const title = document.createElement('h2');
+        title.className = 'title';
+        title.textContent = obj.title;
+        const author = document.createElement('h2');
+        author.className = 'author';
+        author.textContent = obj.author;
+        const btn = document.createElement('button');
+        btn.className = 'remove';
+        btn.textContent = 'Remove';
+        const article = document.createElement('article');
+        article.className = 'awesome-book';
+        const hr = document.createElement('hr');
+        article.append(title, author, btn, hr);
+        fragment.appendChild(article);
+      });
+  
+      container.appendChild(fragment);
+    }
 }
+
+const book = new AwesomeBooks('User');
+const bookContainer = document.getElementById('book');
+const form = document.getElementById('form');
+
+book.display(bookContainer);
+
+window.addEventListener('click', (e) => {
+    const { target } = e;
+    e.preventDefault();
+        if (target.matches('.remove')) {
+        const books = Array.from(ocument.querySelectorAll('.remove'))
+        const i = books.indexOf(target);
+        book.delete(i);
+    } else if (target.matches('#submit')) {
+        const formData = new FormData(form);
+        const title = formData.get('title');
+        const author = formData.get('author');
+        book.store(title, author);
+        form.reset();
+        console.log("test");
+    }
+    book.display(bookContainer);
+})
