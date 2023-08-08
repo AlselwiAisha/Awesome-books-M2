@@ -22,7 +22,7 @@ class AwesomeBooks {
     storeData.forEach((obj) => {
       const title = document.createElement('h2');
       title.className = 'title';
-      title.textContent = obj.title;
+      title.textContent = `"${obj.title}"`;
       const by = document.createElement('h2');
       by.className = 'title';
       by.textContent = 'by';  
@@ -31,7 +31,6 @@ class AwesomeBooks {
       author.textContent = obj.author;
       const btn = document.createElement('button');
       btn.className = 'remove';
-      btn.className = 'btn';
       btn.textContent = 'Remove';
       const article = document.createElement('article');
       article.className = 'awesome-book';
@@ -60,20 +59,22 @@ const form = document.getElementById('form');
 
 book.display(bookContainer);
 
-window.addEventListener('click', (e) => {
-  const { target } = e;
+function handleBookStorage(e){
+  const { target } = e;debugger;
   e.preventDefault();
   if (target.matches('.remove')) {
+    
     const books = [...(document.querySelectorAll('.remove'))];
     const i = books.indexOf(target);
     book.delete(i);
-    book.display(bookContainer);
-  } else if (target.matches('#submit')) {
+     } else if (target.matches('#submit')) {
     const formData = new FormData(form);
     const title = formData.get('title');
     const author = formData.get('author');
     book.store(title, author);
     form.reset();
   }
+  if (target.matches('#submit,.remove'))
   book.display(bookContainer);
-});
+};
+window.addEventListener('click', (e) => handleBookStorage(e));
