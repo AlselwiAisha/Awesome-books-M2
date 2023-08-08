@@ -23,8 +23,11 @@ class AwesomeBooks {
       const title = document.createElement('h2');
       title.className = 'title';
       title.textContent = obj.title;
-      const author = document.createElement('h4');
-      author.className = 'author';
+      const by = document.createElement('h2');
+      by.className = 'title';
+      by.textContent = 'by';  
+      const author = document.createElement('h2');
+      author.className = 'title';
       author.textContent = obj.author;
       const btn = document.createElement('button');
       btn.className = 'remove';
@@ -32,8 +35,10 @@ class AwesomeBooks {
       btn.textContent = 'Remove';
       const article = document.createElement('article');
       article.className = 'awesome-book';
-      const hr = document.createElement('hr');
-      article.append(title, author, btn, hr);
+      const div = document.createElement('div');
+      div.className = 'div';
+      div.append(title, by,author);
+      article.append(div, btn);
       fragment.appendChild(article);
     });
 
