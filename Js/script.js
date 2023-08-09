@@ -14,20 +14,22 @@ function deleteCookie(cookieName) {
 }
 deleteCookie('myCookie');
 
+const children = [...document.querySelectorAll('.nav-link')];
+const heroChildren=[...document.querySelector('#hero').children];
 function toggleNav(target) {
-  const children = [...document.querySelectorAll('.nav-link')]
   const index = children.indexOf(target);
   children.forEach(index => {
     index.classList.remove('active');
   })
-  children[index].classList.add('active');{
-    
-    section.forEach(item => {
-      item.classList.add('hidden');
+  heroChildren.forEach(index => {
+    index.classList.add('hidden');
   })
-}
-}
+  children[index].classList.add('active');
+  heroChildren[index].classList.remove('hidden');
 
+  console.log(index);
+  console.log(heroChildren);
+}
 function handleBookStorage(e) {
   const { target } = e;
   if (target.matches('.remove')) {
@@ -46,7 +48,6 @@ function handleBookStorage(e) {
   }
 
   if (target.matches('#list, #addNew, #contact')) {
-    console.log(target.id);
     toggleNav(target);
   }
 }
