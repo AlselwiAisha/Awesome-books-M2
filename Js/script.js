@@ -1,36 +1,35 @@
-import AwesomeBooks from './module.js';
+import { AwesomeBooks, displayTime } from './module.js';
 
+const book = new AwesomeBooks('User', '#books');
+
+const bookContainer = document.getElementById('book-container');
 const form = document.getElementById('myForm');
-const book = new AwesomeBooks('User', '#book-container');
+const formValues = document.getElementById('form');
+const contact = document.getElementById('contact-container');
 
-function deleteCookie(cookieName) {
-  document.cookie = `${cookieName}=; expires=Thu, 01 Jan 2023 00:00:00 UTC; path=/ ;domain=https://alselwiaisha.github.io/Awesome-books-M2/;`;
-}
-deleteCookie('myCookie');
-
-const children = [...document.querySelectorAll('.nav-link')];
-const heroChildren = [...document.querySelector('#hero').children];
+setInterval(() => { displayTime('#time'); }, 1000);
 
 function toggleNav(target) {
+  const children = [...document.querySelectorAll('.nav-link')];
   const index = children.indexOf(target);
-  children.forEach((index) => {
-    index.classList.remove('active');
-  });
-  heroChildren.forEach((index) => {
-    index.classList.add('hidden');
-  });
-  children[index].classList.add('active');
-  heroChildren[index].classList.remove('hidden');
-}
 
-function tempAlert(msg, duration) {
-  const el = document.createElement('div');
-  el.setAttribute('style', 'position:absolute;top:42%;left:50%;color:green;');
-  el.innerHTML = msg;
-  setTimeout(() => {
-    el.parentNode.removeChild(el);
-  }, duration);
-  document.body.appendChild(el);
+  if (target.parentNode.id === 'nav-links') {
+    children.forEach((item) => {
+      item.classList.remove('active');
+    });
+    children[index].classList.add('active');
+    bookContainer.classList.add('hidden');
+    form.classList.add('hidden');
+    contact.classList.add('hidden');
+  }
+
+  if (target.id === 'list') {
+    bookContainer.classList.remove('hidden');
+  } else if (target.id === 'addNew') {
+    form.classList.remove('hidden');
+  } else if (target.id === 'contact') {
+    contact.classList.remove('hidden');
+  }
 }
 
 function handleBookStorage(e) {
@@ -43,21 +42,32 @@ function handleBookStorage(e) {
     }, 300);
   } else if (target.matches('#submit')) {
     e.preventDefault();
-    const formData = new FormData(form);
+    const formData = new FormData(formValues);
     const title = formData.get('title');
     const author = formData.get('author');
     book.store(title, author);
-    tempAlert('New book successfully added', 2000);
-    form.reset();
+    formValues.reset();
+    if (title && author) {
+      const confirm = document.getElementById('confirm');
+      confirm.textContent = `"${title}" by ${author} is added`;
+      confirm.style.display = 'block';
+      setTimeout(() => {
+        confirm.style.display = 'none';
+      }, 2000);
+    }
   }
-
-  if (target.matches('#list, #addNew, #contact')) {
-    toggleNav(target);
-  }
+  toggleNav(target);
 }
 
 function init() {
   document.addEventListener('click', handleBookStorage);
   book.display();
 }
+
+function deleteCookie(cookieName) {
+  document.cookie = `${cookieName}=; expires=Thu, 01 Jan 2023 00:00:00 UTC; path=/; domain=https://sagieramos.github.io/Awesome-books/;`;
+}
+
+deleteCookie('myCookie');
+
 document.addEventListener('DOMContentLoaded', init);

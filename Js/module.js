@@ -61,4 +61,32 @@ class AwesomeBooks {
   }
 }
 
-export default AwesomeBooks;
+function getOrdinal(number) {
+  const suffixes = ['th', 'st', 'nd', 'rd'];
+  const remainder = number % 100;
+  return number + (suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0]);
+}
+
+function displayTime(element) {
+  const now = new Date();
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ];
+  const month = months[now.getMonth()];
+  const day = getOrdinal(now.getDate());
+  const year = now.getFullYear();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+  const ampm = hours >= 12 ? 'pm' : 'am';
+
+  const formattedHours = hours % 12 || 12;
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+  const timeString = `${month} ${day} ${year}, ${formattedHours}:${formattedMinutes}:${formattedSeconds} ${ampm}`;
+  document.querySelector(element).textContent = timeString;
+}
+
+export { AwesomeBooks, displayTime };

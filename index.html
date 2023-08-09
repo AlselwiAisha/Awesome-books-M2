@@ -16,35 +16,39 @@
                 <li class="nav-link" id="contact">Contact</li>
             </ul>
         </nav>
+        <article id="time"></article>
     </header>
-
     <section id="hero">
 
-        <article id="book-list">
-            <h2>All awesome books</h2>
-            <main id="book-container">
-                <section id="books"></section>
-            </main>
-            <hr>
-        </article>
+        <main id="book-container">
+            <h2 class="topic">All awesome books</h1>
+            <section id="books"></section>
+        </main>
 
-        <form id="myForm" class="hidden" action="#" method="post">
-            <h2>Add a new book</h2>
-            <input id="title" type="text" name="title" maxlength="50" placeholder="Title" required>
-            <input id="author" type="text" name="author" maxlength="50" placeholder="Author" required>
-            <button id="submit" type="submit">Add</button>
-        </form>
+        <section id="myForm" class="hidden">
+            <form id="form" action="#" method="post">
+                <h2 class="topic">Add a new book</h2>
+                <input id="title" type="text" name="title" maxlength="50" placeholder="Title" required>
+                <input id="author" type="text" name="author" maxlength="50" placeholder="Author" required>
+                <h2 id="confirm"></h2>
+                <button id="submit" type="submit">Add</button>
+            </form>
+        </section>
 
-        <article id="contact-me" class="hidden">
-            <h2>Contact information</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae illum, culpa non suscipit itaque fuga
-                vero accusamus cupiditate amet sed minus odio libero aliquam esse fugit nulla cumque facere perferendis.</p>
-        </article>
+        <section id="contact-container" class="hidden">
+            <h2 class="topic">Contact</h2>
+            <article class="cc">
+                <p>Do you have any question or you want to say "Hello"?<br>You can reach out to us</p>
+                <ul class="contact-info">
+                    <li>Our e-mail: mail@mail.com</li>
+                    <li>Our phone number: 00123456789</li>
+                    <li>Our Address: Sango Ota, Nigeria</li>
+                </ul>
+            </article>
+        </section>
+
     </section>
-    
-    <footer>
-        <a href="https://github.com/AlselwiAisha/Awesome-books-M2/blob/main/MIT.md">&copy; Copyright 2023</a>
-    </footer>
+
 </body>
 <script type="module" src="./Js/script.js"></script>
 </html>
