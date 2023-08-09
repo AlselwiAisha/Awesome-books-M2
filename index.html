@@ -3,26 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Books</title>
     <link rel="stylesheet" href="./css/style.css">
-    <title>Awesome books</title>
 </head>
 <body>
-<section class="books-list" id="books-list">
-      <h1>All awesome books</h1>
-       <div id="book">
-       
-     </div>
-
-</section>
-
-<section class="add-new">
-    <h2>Add a new book</h2>
-    <form id="form" method="POST">
-        <input type="text" name="title" placeholder="Title" id="title" required>
-        <input type="text" name="author" placeholder="Author" id="author" required>
-        <button type="submit" id="submit" class="btn">Add</button>
-    </form>
-</section>
- <script src="./Js/script.js"></script>
- </body>
+    <section id="hero">
+        <h1>All awesome books</h1>
+        <main id="book-container">
+            <section id="books"></section>
+        </main>
+        <hr>
+        <form id="myForm" action="#" method="post">
+            <h2>Add a new book</h2>
+            <input id="title" type="text" name="title" maxlength="50" placeholder="Title" required>
+            <input id="author" type="text" name="author" maxlength="50" placeholder="Author" required>
+            <button id="submit" type="submit">Add</button>
+        </form>
+    </section>
+</body>
+<script type="module" src="./Js/script.js"></script>
 </html>
