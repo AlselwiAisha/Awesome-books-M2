@@ -3,33 +3,36 @@ import AwesomeBooks from './module.js';
 const form = document.getElementById('myForm');
 const book = new AwesomeBooks('User', '#book-container');
 
-const section = [
-  document.getElementById('book-list'),
-  document.getElementById('myForm'),
-  document.getElementById('contact'),
-]
-
 function deleteCookie(cookieName) {
   document.cookie = `${cookieName}=; expires=Thu, 01 Jan 2023 00:00:00 UTC; path=/ ;domain=https://alselwiaisha.github.io/Awesome-books-M2/;`;
 }
 deleteCookie('myCookie');
 
 const children = [...document.querySelectorAll('.nav-link')];
-const heroChildren=[...document.querySelector('#hero').children];
+const heroChildren = [...document.querySelector('#hero').children];
+
 function toggleNav(target) {
   const index = children.indexOf(target);
-  children.forEach(index => {
+  children.forEach((index) => {
     index.classList.remove('active');
-  })
-  heroChildren.forEach(index => {
+  });
+  heroChildren.forEach((index) => {
     index.classList.add('hidden');
-  })
+  });
   children[index].classList.add('active');
   heroChildren[index].classList.remove('hidden');
-
-  console.log(index);
-  console.log(heroChildren);
 }
+
+function tempAlert(msg, duration) {
+  const el = document.createElement('div');
+  el.setAttribute('style', 'position:absolute;top:42%;left:50%;color:green;');
+  el.innerHTML = msg;
+  setTimeout(() => {
+    el.parentNode.removeChild(el);
+  }, duration);
+  document.body.appendChild(el);
+}
+
 function handleBookStorage(e) {
   const { target } = e;
   if (target.matches('.remove')) {
@@ -44,6 +47,7 @@ function handleBookStorage(e) {
     const title = formData.get('title');
     const author = formData.get('author');
     book.store(title, author);
+    tempAlert('New book successfully added', 2000);
     form.reset();
   }
 
@@ -56,5 +60,4 @@ function init() {
   document.addEventListener('click', handleBookStorage);
   book.display();
 }
-
 document.addEventListener('DOMContentLoaded', init);
