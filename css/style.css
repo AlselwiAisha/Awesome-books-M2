@@ -11,7 +11,28 @@ html {
   font-size: 16px;
 }
 
+li {
+  list-style: none;
+}
+
 h1 {
+  font-size: 1.2rem;
+}
+
+#nav-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+#nav-links {
+  display: flex;
+  gap: 12px;
+}
+
+#hero h2 {
   text-align: center;
   margin-top: 24px;
 }
@@ -38,7 +59,7 @@ hr {
   width: 50px;
 }
 
-#hero {
+#book-list {
   max-width: 600px;
   margin: 0 auto;
   display: flex;
@@ -55,6 +76,7 @@ form {
   align-items: center;
   gap: 10px;
   width: 86%;
+  margin: 0 auto;
 }
 
 form h2 {
@@ -102,4 +124,16 @@ input {
   opacity: 0;
   transform: translateY(-20px);
   pointer-events: none;
+}
+
+.nav-link:active {
+  color: blue;
+}
+
+.active {
+  border-bottom: 1px solid blue;
+}
+
+.hidden {
+  display: none;
 }

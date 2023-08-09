@@ -3,10 +3,30 @@ import AwesomeBooks from './module.js';
 const form = document.getElementById('myForm');
 const book = new AwesomeBooks('User', '#book-container');
 
+const section = [
+  document.getElementById('book-list'),
+  document.getElementById('myForm'),
+  document.getElementById('contact'),
+]
+
 function deleteCookie(cookieName) {
   document.cookie = `${cookieName}=; expires=Thu, 01 Jan 2023 00:00:00 UTC; path=/ ;domain=https://alselwiaisha.github.io/Awesome-books-M2/;`;
 }
 deleteCookie('myCookie');
+
+function toggleNav(target) {
+  const children = [...document.querySelectorAll('.nav-link')]
+  const index = children.indexOf(target);
+  children.forEach(index => {
+    index.classList.remove('active');
+  })
+  children[index].classList.add('active');{
+    
+    section.forEach(item => {
+      item.classList.add('hidden');
+  })
+}
+}
 
 function handleBookStorage(e) {
   const { target } = e;
@@ -23,6 +43,11 @@ function handleBookStorage(e) {
     const author = formData.get('author');
     book.store(title, author);
     form.reset();
+  }
+
+  if (target.matches('#list, #addNew, #contact')) {
+    console.log(target.id);
+    toggleNav(target);
   }
 }
 

@@ -7,28 +7,37 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <header id="nav-container">
-        <nav>
-            <h5>Awesome Books</h5>
-            <ul>
+    <header>
+        <nav id="nav-container">
+            <h1>Awesome Books</h1>
+            <ul id="nav-links">
                 <li class="nav-link active" id="list">List</li>
                 <li class="nav-link" id="addNew">Add new</li>
                 <li class="nav-link" id="contact">Contact</li>
             </ul>
         </nav>
     </header>
+
     <section id="hero">
-        <h1>All awesome books</h1>
-        <main id="book-container">
-            <section id="books"></section>
-        </main>
-        <hr>
-        <form id="myForm" action="#" method="post">
+
+        <article id="book-list">
+            <h2>All awesome books</h2>
+            <main id="book-container">
+                <section id="books"></section>
+            </main>
+            <hr>
+        </article>
+
+        <form id="myForm" class="hidden" action="#" method="post">
             <h2>Add a new book</h2>
             <input id="title" type="text" name="title" maxlength="50" placeholder="Title" required>
             <input id="author" type="text" name="author" maxlength="50" placeholder="Author" required>
             <button id="submit" type="submit">Add</button>
         </form>
+
+        <article id="contact" class="hidden">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis soluta molestiae explicabo totam ut, in recusandae sint dolor, quasi non fugit? Modi eligendi temporibus ducimus blanditiis, libero velit in. Laboriosam.
+        </article>
     </section>
 </body>
 <script type="module" src="./Js/script.js"></script>
