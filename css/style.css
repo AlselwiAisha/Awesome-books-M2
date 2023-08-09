@@ -60,9 +60,9 @@ hr {
 }
 
 #book-list {
+  display: flex;
   max-width: 600px;
   margin: 0 auto;
-  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 12px;
@@ -135,5 +135,5 @@ input {
 }
 
 .hidden {
-  display: none;
+  display: none !important; 
 }
