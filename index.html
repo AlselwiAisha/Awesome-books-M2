@@ -3,25 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Styles/style.css">
-    <title>Awesome books</title>
+    <title>Awesome Books</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-<section class="books-list" id="books-list">
-      <h1>Awesome books</h1>
-       <div id="book">
-       
-     </div>
+    <header>
+        <nav id="nav-container">
+            <h1>Awesome Books</h1>
+            <ul id="nav-links">
+                <li class="nav-link active" id="list">List</li>
+                <li class="nav-link" id="addNew">Add new</li>
+                <li class="nav-link" id="contact">Contact</li>
+            </ul>
+        </nav>
+        <article id="time"></article>
+    </header>
+    <section id="hero">
 
-</section>
+        <main id="book-container">
+            <h2 class="topic">All awesome books</h1>
+            <section id="books"></section>
+        </main>
 
-<section class="add-new">
-    <form id="form" method="POST">
-        <input type="text" name="title" placeholder="Title" id="title" required>
-        <input type="text" name="author" placeholder="Author" id="author" required>
-        <button type="submit" id="submit" class="btn">Add</button>
-    </form>
-</section>
- <script src="./Js/script.js"></script>
- </body>
+        <section id="myForm" class="hidden">
+            <form id="form" action="#" method="post">
+                <h2 class="topic">Add a new book</h2>
+                <input id="title" type="text" name="title" maxlength="50" placeholder="Title" required>
+                <input id="author" type="text" name="author" maxlength="50" placeholder="Author" required>
+                <h2 id="confirm"></h2>
+                <button id="submit" type="submit">Add</button>
+            </form>
+        </section>
+
+        <section id="contact-container" class="hidden">
+            <h2 class="topic">Contact</h2>
+            <article class="cc">
+                <p>Do you have any question or you want to say "Hello"?<br>You can reach out to us</p>
+                <ul class="contact-info">
+                    <li>Our e-mail: mail@mail.com</li>
+                    <li>Our phone number: 00123456789</li>
+                    <li>Our Address: Sango Ota, Nigeria</li>
+                </ul>
+            </article>
+        </section>
+
+    </section>
+    
+    <footer>
+        <a href="https://github.com/AlselwiAisha/Awesome-books-M2/blob/main/MIT.md">&copy; Copyright 2023</a>
+    </footer>
+</body>
+<script type="module" src="./Js/script.js"></script>
 </html>

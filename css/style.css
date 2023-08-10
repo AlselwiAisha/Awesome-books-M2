@@ -1,78 +1,202 @@
-
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 16px;
 }
 
-.main-pro {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
+header {
+  padding: 12px;
+  min-width: 400px;
 }
 
 h1 {
-  font-size: 45px;
+  font-size: 1.2rem;
 }
 
-#book {
-  width: 60%;
-  margin-bottom: 10px;
+#time {
+  float: right;
 }
 
-.awesome-book {
+.topic {
+  text-align: center;
+  margin: 24px 0;
+}
+
+#book-container {
   width: 100%;
+}
+
+#books {
   display: flex;
   flex-direction: column;
-  align-items: start;
-  margin-bottom: 10px;
+  gap: 4px;
+  border: 1px solid #333333a0;
 }
 
-.awesome-book hr,
-.awesome-book h2,
-.awesome-book h4 {
-  width: 100%;
-  margin: 6px;
-  margin-left: 10px;
+.remove {
+  width: fit-content;
+  padding: 4px;
+  border: 1px solid #333333a0;
+  font-weight: 600;
 }
 
-.books-list,
-.add-new {
+hr {
+  width: 50px;
+}
+
+#hero {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 12px;
+  gap: 32px;
+  margin: 0 auto;
+  min-width: 400px;
+}
+
+#myForm {
+  width: 86%;
+  max-width: 600px;
 }
 
 form {
-  width: 60%;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 input {
+  padding: 10px;
+  border: 1px solid #333333a0;
+  font-weight: 600;
   width: 100%;
-  padding: 10px 5px;
-  margin: 10px;
-  border: 1px solid #434343;
-  border-radius: 5px;
 }
 
-.btn {
-  width: 10%;
-  margin: 10px;
+#submit {
+  padding: 10px;
+  width: fit-content;
+  align-self: flex-end;
+  font-weight: 600;
+  margin: 14px 0;
+}
+
+.remove,
+#submit {
+  cursor: pointer;
+}
+
+.awesome-book {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 8px;
+  position: relative;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.awesome-book h2 {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.awesome-book:nth-child(odd) {
+  background: #8080804f;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+#nav-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 12px;
+  border: 1px solid #333;
+  margin-bottom: 12px;
+}
+
+#nav-links {
+  display: flex;
+}
+
+.nav-link {
+  padding: 10px;
+  list-style: none;
+}
+
+.nav-link:not(:last-child) {
+  border-right: 1px solid #333;
+}
+
+#confirm {
+  align-self: flex-end;
+  margin: 4px 0;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+#contact-container {
+  min-width: 400px;
+  width: 100%;
+}
+
+.cc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.contact-info {
+  padding: 0 32px;
+}
+
+.hidden,
+#confirm {
+  display: none;
+}
+
+.active {
+  color: blue;
+}
+
+.nav-link:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  width: 98%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #333;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: blue;
+  transform: translateY(-5px);
 }

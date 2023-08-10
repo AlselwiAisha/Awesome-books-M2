@@ -1,74 +1,73 @@
-class AwesomeBooks {
-  constructor(memAdrr) {
-    this.memAdrr = memAdrr;
-  }
+import { AwesomeBooks, displayTime } from './module.js';
 
-  store(BookTitle, booKAuthor) {
-    if (BookTitle < 1 || booKAuthor < 1) return;
-    const storeData = JSON.parse(localStorage.getItem(this.memAdrr)) || [];
-    const book = { title: BookTitle, author: booKAuthor };
-    storeData.push(book);
-    localStorage.setItem(this.memAdrr, JSON.stringify(storeData));
-  }
+const book = new AwesomeBooks('User', '#books');
 
-  display(container) {
-    const storeData = JSON.parse(localStorage.getItem(this.memAdrr)) || [];
-    const fragment = document.createDocumentFragment();
+const bookContainer = document.getElementById('book-container');
+const form = document.getElementById('myForm');
+const formValues = document.getElementById('form');
+const contact = document.getElementById('contact-container');
 
-    while (container.firstChild) {
-      container.firstChild.remove();
-    }
+setInterval(() => { displayTime('#time'); }, 1000);
 
-    storeData.forEach((obj) => {
-      const title = document.createElement('h2');
-      title.className = 'title';
-      title.textContent = obj.title;
-      const author = document.createElement('h4');
-      author.className = 'author';
-      author.textContent = obj.author;
-      const btn = document.createElement('button');
-      btn.className = 'remove';
-      btn.className = 'btn';
-      btn.textContent = 'Remove';
-      const article = document.createElement('article');
-      article.className = 'awesome-book';
-      const hr = document.createElement('hr');
-      article.append(title, author, btn, hr);
-      fragment.appendChild(article);
+function toggleNav(target) {
+  const children = [...document.querySelectorAll('.nav-link')];
+  const index = children.indexOf(target);
+
+  if (target.parentNode.id === 'nav-links') {
+    children.forEach((item) => {
+      item.classList.remove('active');
     });
-
-    container.appendChild(fragment);
+    children[index].classList.add('active');
+    bookContainer.classList.add('hidden');
+    form.classList.add('hidden');
+    contact.classList.add('hidden');
   }
 
-  delete(index) {
-    const storeData = JSON.parse(localStorage.getItem(this.memAdrr));
-    if (!Array.isArray(storeData)) return;
-    if (index < 0 || index >= storeData.length) return;
-    storeData.splice(index, 1);
-    localStorage.setItem(this.memAdrr, JSON.stringify(storeData));
+  if (target.id === 'list') {
+    bookContainer.classList.remove('hidden');
+  } else if (target.id === 'addNew') {
+    form.classList.remove('hidden');
+  } else if (target.id === 'contact') {
+    contact.classList.remove('hidden');
   }
 }
 
-const book = new AwesomeBooks('User');
-const bookContainer = document.getElementById('book');
-const form = document.getElementById('form');
-
-book.display(bookContainer);
-
-window.addEventListener('click', (e) => {
+function handleBookStorage(e) {
   const { target } = e;
-  e.preventDefault();
   if (target.matches('.remove')) {
-    const books = [...(document.querySelectorAll('.remove'))];
-    const i = books.indexOf(target);
-    book.delete(i);
-    book.display(bookContainer);
+    target.parentNode.classList.add('fade-out');
+    const index = [...(document.querySelectorAll('.remove'))].indexOf(target);
+    setTimeout(() => {
+      book.delete(index);
+    }, 300);
   } else if (target.matches('#submit')) {
-    const formData = new FormData(form);
+    e.preventDefault();
+    const formData = new FormData(formValues);
     const title = formData.get('title');
     const author = formData.get('author');
     book.store(title, author);
-    form.reset();
+    formValues.reset();
+    if (title && author) {
+      const confirm = document.getElementById('confirm');
+      confirm.textContent = `"${title}" by ${author} is added`;
+      confirm.style.display = 'block';
+      setTimeout(() => {
+        confirm.style.display = 'none';
+      }, 2000);
+    }
   }
-  book.display(bookContainer);
-});
+  toggleNav(target);
+}
+
+function init() {
+  document.addEventListener('click', handleBookStorage);
+  book.display();
+}
+
+function deleteCookie(cookieName) {
+  document.cookie = `${cookieName}=; expires=Thu, 01 Jan 2023 00:00:00 UTC; path=/; domain=https://sagieramos.github.io/Awesome-books/;`;
+}
+
+deleteCookie('myCookie');
+
+document.addEventListener('DOMContentLoaded', init);
