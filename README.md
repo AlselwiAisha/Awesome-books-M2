@@ -133,8 +133,8 @@ You can deploy this project using:
 
 👤 **AishaAlsewi**
 
-- GitHub: [@githubhandle](https://github.com/AlselwiAisha)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/aisha-alselwi-53a361270/)
+- GitHub: [AishaM Alselwi](https://github.com/AlselwiAisha)
+- LinkedIn: [Aisha Alsewi](https://www.linkedin.com/in/aisha-alselwi-53a361270/)
 
 👤 ***Stanley Osagie Ramos**
 
